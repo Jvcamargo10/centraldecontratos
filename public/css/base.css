@@ -1,0 +1,26 @@
+/* base.css — Base: caixa, foco de teclado, texto.
+   Parte do estilo da Central de Contratos; a ordem dos arquivos no index.html importa
+   (é a ordem da cascata). */
+
+/* Inter, a fonte do SGC — servida daqui (pasta fonts/, licença OFL), sem
+   depender de internet. Arquivo variável: um só cobre do peso 100 ao 900. */
+@font-face{
+  font-family:"Inter"; font-style:normal; font-weight:100 900; font-display:swap;
+  src:url("../fonts/inter-latin-wght.woff2") format("woff2-variations"), url("../fonts/inter-latin-wght.woff2") format("woff2");
+}
+*{ box-sizing:border-box; }
+/* O atributo hidden sempre esconde — mesmo em componentes com display próprio
+   (ex.: o aviso de andamento do mapa de risco é um .callout, display:flex). */
+[hidden]{ display:none !important; }
+html,body{ margin:0; padding:0; }
+body{
+  font-family:var(--fonte); font-feature-settings:"cv11", "ss01"; /* Inter: "l" e "1" mais fáceis de distinguir */
+  font-size:14px; line-height:1.45; background:var(--bg); color:var(--text);
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+}
+a{ color:var(--primary); text-decoration:none; }
+a:hover{ text-decoration:underline; }
+/* Foco visível só para teclado — acessibilidade sem poluir o clique. */
+:focus-visible{ outline:none; box-shadow:var(--focus); border-radius:var(--r-sm); }
+::selection{ background:var(--primary-soft); }
+.app{ display:flex; min-height:100vh; }

@@ -1,0 +1,3 @@
+# Sistema interno da Prefeitura de Itaverde: nada aqui deve ser indexado.
+User-agent: *
+Disallow: /

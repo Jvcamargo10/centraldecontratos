@@ -1,0 +1,173 @@
+/* telas.css — Partes de telas específicas (busca, visão do contrato, relatórios, requisições, mapa, UFM, histórico).
+   Parte do estilo da Central de Contratos; a ordem dos arquivos no index.html importa
+   (é a ordem da cascata). */
+
+/* Busca nos documentos (01/10/2026). */
+.busca-doc{ border:1px solid var(--line); border-radius:var(--r); padding:10px 14px; margin-top:10px; background:var(--surface); }
+.busca-doc-topo{ display:flex; justify-content:space-between; gap:12px; align-items:flex-start; margin-bottom:6px; }
+.busca-trecho{ font-size:13px; line-height:1.5; padding:4px 0; border-top:1px dashed var(--line); overflow-wrap:anywhere; }
+.busca-trecho mark{ background:var(--warn-bg); color:inherit; padding:0 2px; border-radius:3px; font-weight:600; }
+.busca-pagina{ font-size:11.5px; font-weight:700; color:var(--primary); margin-right:6px; text-decoration:none; }
+/* Visão do contrato (01/10/2026): quatro blocos no topo do detalhe. */
+.visao-grade{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:12px; margin:0 0 16px; }
+.visao-bloco{ border:1px solid var(--line); border-radius:var(--r-lg); padding:14px 16px; display:flex; flex-direction:column; gap:8px; align-items:flex-start; box-shadow:var(--shadow-sm);
+  background:linear-gradient(to top, color-mix(in srgb, var(--primary) 4%, var(--surface)), var(--surface)); }
+.visao-titulo{ font-weight:700; font-size:14px; color:var(--text); display:flex; align-items:center; gap:8px; }
+.visao-titulo svg{ color:var(--primary); }
+.visao-lista{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:5px; font-size:13px; width:100%; }
+.visao-lista li{ display:flex; flex-wrap:wrap; align-items:center; gap:6px; }
+/* Ponto de risco: a nota fica ao lado do texto, que quebra dentro da própria coluna. */
+.visao-lista li.com-pts{ flex-wrap:nowrap; align-items:flex-start; gap:8px; line-height:1.4; }
+.visao-lista li.com-pts .conta-pts{ margin-top:1px; }
+.visao-bloco .btn-small{ margin-top:auto; }
+/* Relatórios mensais (29/09/2026): a faixa dos meses e a lista por mês.
+   A cor diz o estado, e a marca dentro da célula também (✓ ! …), para
+   quem não distingue as cores. */
+.faixa-meses{ display:flex; gap:3px; }
+.faixa-mes{ display:inline-flex; align-items:center; justify-content:center; min-width:20px; height:22px; padding:0 3px; border-radius:4px; font-size:10.5px; font-weight:700; background:var(--surface-3); color:var(--muted); border:1px solid transparent; }
+.faixa-mes.ok{ background:var(--ok-bg); color:var(--ok); border-color:var(--ok-line); }
+.faixa-mes.falta{ background:var(--err-bg); color:var(--err); border-color:var(--err-line); }
+.faixa-mes.aguardando{ background:var(--warn-bg); color:var(--warn); border-color:var(--warn-line); }
+.faixa-mes.fora{ opacity:.55; }
+.faixa-legenda{ display:inline-flex; align-items:center; gap:6px; flex-wrap:wrap; margin-left:6px; }
+.faixa-legenda .faixa-mes{ min-width:18px; height:18px; }
+.grade-meses{ display:flex; flex-direction:column; gap:6px; }
+.grade-ano{ display:flex; align-items:center; gap:4px; flex-wrap:wrap; }
+.grade-ano b{ width:44px; font-size:13px; }
+.grade-ano .faixa-mes{ min-width:36px; font-weight:600; text-transform:lowercase; }
+.rel-lista{ display:flex; flex-direction:column; gap:10px; max-height:52vh; overflow:auto; padding-right:4px; }
+.rel-mes-titulo{ font-weight:700; font-size:13px; margin-bottom:4px; }
+.rel-mes ul{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:4px; }
+.rel-arquivo{ display:flex; justify-content:space-between; align-items:center; gap:10px; padding:6px 8px; border-radius:6px; background:var(--surface-2); font-size:13px; }
+.rel-nome{ overflow-wrap:anywhere; }
+.rel-acoes{ display:flex; gap:6px; flex-shrink:0; }
+.rel-sugestao{ display:flex; flex-wrap:wrap; align-items:center; gap:6px; margin-top:4px; font-size:12.5px; }
+/* Requisições: "Onde está a resposta" (29/09/2026). */
+.direcao-lista{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px; }
+.direcao-item{ border:1px solid var(--line); border-radius:var(--r); padding:12px 14px; background:var(--surface); }
+.direcao-pedido{ font-size:13.5px; line-height:1.5; }
+.direcao-num{ font-weight:700; color:var(--primary); }
+.direcao-meta{ display:flex; flex-wrap:wrap; gap:6px; margin:8px 0 4px; }
+.direcao-chip{ font-size:11.5px; font-weight:600; padding:2px 9px; border-radius:999px; background:var(--surface-3); color:var(--text-2); }
+.direcao-chip.gestor{ background:var(--warn-bg, #fff4d6); color:var(--warn, #8a5a00); }
+.direcao-pastas{ list-style:none; margin:8px 0 0; padding:0; display:flex; flex-direction:column; gap:6px; }
+.direcao-pasta{ padding:8px 10px; border-radius:6px; background:var(--surface-2); }
+.direcao-pasta-topo{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+.direcao-caminho{ font-weight:600; font-size:13px; display:inline-flex; align-items:center; gap:6px; flex:1 1 260px; overflow-wrap:anywhere; }
+.direcao-arquivos{ margin-top:8px; }
+.direcao-arquivos ul{ list-style:none; margin:4px 0 0; padding:0; display:flex; flex-direction:column; gap:4px; }
+.direcao-arquivos li{ display:flex; justify-content:space-between; align-items:center; gap:10px; font-size:12.5px; overflow-wrap:anywhere; }
+.direcao-resumo{ display:grid; grid-template-columns:repeat(auto-fill, minmax(170px, 1fr)); gap:10px 18px; }
+/* Mapa de risco: "O que fazer agora" e tendência (28/09/2026). */
+.acoes-carteira{ margin-bottom:16px; }
+.acao-grupo{ border:1px solid var(--line); border-radius:var(--r); margin-top:8px; background:var(--surface); }
+.acao-grupo.urgente{ border-left:4px solid var(--err-line); }
+.acao-grupo > summary{ list-style:none; cursor:pointer; display:flex; flex-wrap:wrap; align-items:baseline; gap:4px 10px; padding:10px 14px; }
+.acao-grupo > summary::-webkit-details-marker{ display:none; }
+.acao-grupo > summary::before{ content:'▸'; color:var(--muted); font-size:12px; transition:transform .12s; }
+.acao-grupo[open] > summary::before{ transform:rotate(90deg); }
+.acao-grupo > summary:focus-visible{ outline:2px solid var(--primary); outline-offset:2px; }
+.acao-titulo{ font-weight:700; font-size:14px; }
+.acao-contagem{ font-size:12px; font-weight:700; padding:0 8px; border-radius:999px; background:var(--surface-3); color:var(--text-2); font-variant-numeric:tabular-nums; }
+.acao-grupo.urgente .acao-contagem{ background:var(--err-bg); color:var(--err); }
+.acao-explicacao{ flex-basis:100%; font-size:12.5px; color:var(--muted); padding-left:18px; }
+.acao-lista{ list-style:none; margin:0; padding:0 14px 10px 32px; display:flex; flex-direction:column; gap:2px; }
+.acao-contrato{ all:unset; box-sizing:border-box; width:100%; cursor:pointer; display:grid; grid-template-columns:90px minmax(0,1fr) minmax(0,2fr); gap:10px; padding:6px 8px; border-radius:6px; font-size:13px; align-items:baseline; }
+.acao-contrato:hover{ background:var(--surface-2); }
+.acao-contrato:focus-visible{ outline:2px solid var(--primary); }
+.acao-num{ font-weight:700; font-variant-numeric:tabular-nums; }
+.acao-emp{ color:var(--text-2); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.acao-det{ color:var(--muted); font-size:12.5px; }
+@media (max-width:760px){ .acao-contrato{ grid-template-columns:80px minmax(0,1fr); } .acao-det{ grid-column:1 / -1; } }
+.risco-com-tendencia{ display:inline-flex; align-items:center; gap:6px; }
+.tendencia{ font-size:11px; font-weight:700; }
+.tendencia.sobe{ color:var(--err); }
+.tendencia.desce{ color:var(--ok); }
+/* Termos de encerramento para confirmar (Pendências de leitura, 25/09/2026). */
+.encerramento-item{ border:1px solid var(--line); border-left:4px solid var(--warn-line); border-radius:var(--r); padding:12px 14px; margin-top:10px; background:var(--surface); }
+.encerramento-topo{ display:flex; justify-content:space-between; align-items:flex-start; gap:16px; flex-wrap:wrap; }
+.encerramento-datas{ display:flex; gap:22px; flex-wrap:wrap; }
+.encerramento-datas > span{ display:flex; flex-direction:column; gap:2px; font-size:13.5px; font-variant-numeric:tabular-nums; }
+.encerramento-rodape{ display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap; margin-top:10px; }
+.encerramento-rodape .campo-origem{ margin-top:0; padding-top:0; max-width:60%; }
+/* "Como chegamos a este nível" no Mapa de risco (25/09/2026). */
+.conta-eixos{ display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:12px; }
+.conta-eixo{ border:1px solid var(--line); border-radius:var(--r); padding:12px 14px; background:var(--surface); display:flex; flex-direction:column; gap:8px; min-width:0; }
+.conta-topo{ display:flex; align-items:center; justify-content:space-between; gap:8px; font-size:13.5px; }
+.conta-motivos{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:7px; }
+.conta-motivos li{ display:flex; gap:8px; align-items:flex-start; font-size:12.5px; line-height:1.45; color:var(--text-2); }
+.conta-pts{ flex-shrink:0; min-width:34px; text-align:center; font-size:11.5px; font-weight:700; padding:1px 6px; border-radius:999px; background:var(--warn-bg); color:var(--warn); font-variant-numeric:tabular-nums; }
+.conta-pts.zero{ background:var(--surface-3); color:var(--muted); }
+.conta-pts.nivel-alto{ background:var(--err-bg); color:var(--err); }
+.conta-pts.nivel-baixo{ background:var(--surface-3); color:var(--muted); }
+.conta-total{ margin-top:auto; padding-top:6px; border-top:1px dashed var(--line); font-size:12px; color:var(--muted); }
+.evidencias{ display:flex; flex-direction:column; gap:8px; margin-top:8px; }
+.evid{ border-left:3px solid var(--line-strong); padding:2px 0 2px 10px; }
+.evid > summary{ list-style:none; cursor:pointer; }
+.evid > summary::-webkit-details-marker{ display:none; }
+.evid > summary:focus-visible{ outline:2px solid var(--primary); outline-offset:2px; border-radius:4px; }
+.evid-rotulo{ display:flex; align-items:center; gap:4px; font-size:11.5px; font-weight:600; color:var(--ok); margin-bottom:2px; }
+.evid-frase{ display:block; font-size:12.5px; line-height:1.5; color:var(--text-2); font-style:italic; quotes:'“' '”'; }
+.evid-acao{ display:inline-block; margin-top:2px; font-size:12px; font-weight:600; color:var(--primary); }
+.evid-acao::before{ content:'ver frase inteira'; }
+.evid[open] .evid-acao::before{ content:'ocultar'; }
+.evid[open] .evid-inicio{ display:none; }
+.evid[open] > summary{ margin-bottom:2px; }
+.legenda-prop{ display:flex; gap:4px 14px; flex-wrap:wrap; font-size:12px; color:var(--text-2); }
+.legenda-prop i{ display:inline-block; width:8px; height:8px; border-radius:2px; margin-right:5px; vertical-align:middle; }
+@keyframes aparecer{ from{ opacity:0; } to{ opacity:1; } }
+@keyframes subir{ from{ opacity:0; transform:translateY(8px) scale(.99); } to{ opacity:1; transform:none; } }
+
+.detail-list{ display:flex; flex-direction:column; gap:0; }
+.detail-row{ display:flex; justify-content:space-between; gap:16px; padding:10px 0; border-bottom:1px solid var(--line); font-size:13px; }
+.detail-row:last-child{ border-bottom:none; }
+.detail-label{ color:var(--muted); font-weight:600; }
+.detail-value{ color:var(--text); text-align:right; min-width:0; overflow-wrap:anywhere; }
+/* Pares campo/valor em grade — leitura rápida sem o rótulo num canto e o
+   valor no outro da tela. */
+.kv-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:12px 20px; margin-top:12px; }
+.kv{ min-width:0; }
+.kv-label{ font-size:11px; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:.04em; display:flex; align-items:center; gap:6px; }
+.kv-value{ font-size:13.5px; color:var(--text); margin-top:2px; overflow-wrap:anywhere; }
+.kv-value.vazio{ color:var(--muted); }
+.kv.largo{ grid-column:1 / -1; }
+.confianca{ font-size:10.5px; font-weight:600; color:var(--muted); background:var(--surface-3); border-radius:4px; padding:0 5px; text-transform:none; letter-spacing:0; }
+
+.section-title{ font-size:12px; font-weight:700; margin:20px 0 8px; color:var(--text-2); text-transform:uppercase; letter-spacing:.04em; }
+.tratativa-row{ padding:10px 0; border-bottom:1px solid var(--line); font-size:13px; }
+.tratativa-meta{ color:var(--muted); font-size:12px; margin-top:2px; }
+.related-empty{ font-size:13px; color:var(--muted); padding:6px 0 10px; }
+/* Seleção manual: área que recebe arquivos e pastas arrastados do Explorer. */
+.zona-soltar-manual{ border:2px dashed var(--line-strong); border-radius:var(--r-lg); padding:18px; background:var(--surface-2); transition:border-color .15s, background .15s; }
+.zona-soltar-manual.arrastando{ border-color:var(--primary); background:var(--primary-soft); }
+.related-row{ display:flex; justify-content:space-between; gap:10px; padding:9px 0; border-bottom:1px solid var(--line); font-size:13px; }
+.chip-link{ color:var(--primary); cursor:pointer; font-weight:600; }
+.chip-link:hover{ text-decoration:underline; }
+details > summary{ cursor:pointer; }
+details > summary:hover{ color:var(--text) !important; }
+
+.timeline{ display:flex; flex-direction:column; }
+.timeline-item{ display:flex; align-items:flex-start; gap:10px; padding:10px 0; border-bottom:1px solid var(--line); }
+.timeline-item:last-child{ border-bottom:none; }
+.timeline-icon{ width:26px; height:26px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#fff; flex-shrink:0; margin-top:1px; }
+.timeline-body{ flex:1; min-width:0; }
+.timeline-title{ font-size:13px; font-weight:600; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.timeline-meta{ font-size:12px; color:var(--muted); margin-top:2px; }
+.timeline-date{ font-size:12px; color:var(--muted); white-space:nowrap; flex-shrink:0; padding-top:3px; }
+/* UFM e gratificação (06/10/2026). */
+.ufm-topo{ display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:0 14px; }
+.ufm-num{ width:100%; min-width:70px; height:34px; padding:0 8px; border:1px solid var(--line-strong); border-radius:var(--r); font:inherit; font-size:13.5px; background:var(--surface); color:var(--text); text-align:right; }
+.ufm-num:focus{ outline:none; border-color:var(--primary); box-shadow:var(--focus); }
+@media (max-width:480px){ .ufm-topo{ grid-template-columns:minmax(0,1fr); } }
+/* Histórico administrativo do contrato (06/10/2026). */
+.hist-topo{ display:flex; justify-content:space-between; align-items:center; gap:8px 16px; flex-wrap:wrap; margin:0 0 6px; }
+.hist-exportar{ display:flex; gap:6px; flex-wrap:wrap; }
+.hist-descricao{ font-size:13.5px; color:var(--text); margin-top:3px; white-space:pre-wrap; overflow-wrap:anywhere; }
+.hist-acoes{ display:flex; gap:6px; flex-wrap:wrap; margin-top:8px; }
+.hist-versoes{ margin-top:6px; font-size:12.5px; }
+.hist-versoes summary{ cursor:pointer; color:var(--text-2); font-weight:600; }
+.hist-versoes ul{ margin:6px 0 0; padding-left:18px; display:flex; flex-direction:column; gap:6px; }
+.prazos-proprios{ border:1px solid var(--line); border-radius:var(--r); padding:10px 14px 2px; margin:0 0 14px; display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:0 12px; }
+.prazos-proprios[hidden]{ display:none; }
+.prazos-proprios legend{ font-size:12.5px; font-weight:600; color:var(--text-2); padding:0 4px; }
+@media (max-width:480px){ .prazos-proprios{ grid-template-columns:minmax(0,1fr); } }

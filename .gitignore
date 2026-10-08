@@ -1,0 +1,21 @@
+node_modules/
+data.json
+data.json.tmp
+backups/
+*.log
+.env
+
+# Texto extraído dos contratos para a avaliação (conteúdo de documento — não versionar)
+ferramentas/avaliacao/cache/
+
+# Cache do texto extraído dos contratos (conteúdo de documento — não versionar)
+.texto-cache/
+
+# Logs da leitura noturna e cache do motor de OCR
+logs/
+.ocr-cache/
+
+# Dados de contratos e de pessoas (fichas geradas, retorno da API do SGC,
+# resultado da avaliação com CNPJ/CPF do SGC) — não versionar
+fichas-cadastro/
+ferramentas/avaliacao/resultado.json

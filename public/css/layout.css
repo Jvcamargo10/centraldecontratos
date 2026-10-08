@@ -1,0 +1,93 @@
+/* layout.css — Estrutura: menu lateral, topo e área da página.
+   Parte do estilo da Central de Contratos; a ordem dos arquivos no index.html importa
+   (é a ordem da cascata). */
+
+/* ---------- Barra lateral ---------- */
+.sidebar{ width:var(--sidebar-w); flex-shrink:0; background:var(--sidebar-bg); color:#fff; position:sticky; top:0; height:100vh; overflow-y:auto; padding:14px 0 20px; display:flex; flex-direction:column; }
+.brand{ display:flex; align-items:center; gap:11px; padding:6px 18px 16px; border-bottom:1px solid rgba(255,255,255,.07); margin-bottom:6px; }
+.brand-badge{ width:34px;height:34px;border-radius:9px;background:var(--gradiente-marca); display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px; letter-spacing:.02em; box-shadow:0 2px 8px rgba(0,0,0,.25); }
+/* Marca no menu: só o logo da Prefeitura (recolhido: só o brasão). */
+.brand-logo{ display:block; width:100%; max-width:200px; height:auto; }
+.brand-marca{ display:none; width:38px; height:38px; }
+.brand.com-logo{ padding:8px 20px 16px; }
+.brand-name{ font-size:14px; font-weight:700; line-height:1.2; }
+.brand-sub{ font-size:11px; color:rgba(255,255,255,.6); margin-top:1px; }
+.nav-group{ margin:16px 0 2px; }
+.nav-group.sem-titulo{ margin-top:8px; }
+.nav-group-label{ font-size:11px; letter-spacing:.02em; color:rgba(255,255,255,.6); padding:0 22px 6px; font-weight:600; }
+/* Grupo recolhível ("Configurações"). */
+.nav-group.recolhivel{ margin-top:18px; padding-top:10px; border-top:1px solid rgba(255,255,255,.07); }
+.nav-group-toggle{ display:flex; align-items:center; gap:11px; width:calc(100% - 20px); margin:0 10px; padding:8px 12px; border:0; border-radius:var(--r); background:none; color:rgba(255,255,255,.74); font:inherit; font-size:13.5px; cursor:pointer; text-align:left; transition:background-color .15s, color .15s; }
+.nav-group-toggle:hover{ background:rgba(255,255,255,.06); color:#fff; }
+.nav-group-toggle:focus-visible{ outline:none; box-shadow:0 0 0 2px var(--accent); }
+.nav-group-toggle svg{ flex-shrink:0; opacity:.85; }
+.nav-group-seta{ margin-left:auto; width:7px; height:7px; border-right:1.5px solid currentColor; border-bottom:1.5px solid currentColor; transform:rotate(45deg); transition:transform .2s; opacity:.7; }
+.nav-group-toggle[aria-expanded="true"] .nav-group-seta{ transform:rotate(-135deg); }
+.nav-group.recolhivel .nav-group-itens{ margin-top:2px; }
+.nav-group.recolhivel .nav-item{ padding-left:22px; font-size:13px; }
+.nav-group-itens:not([hidden]){ animation:aparecer .18s ease both; }
+.nav-item{ position:relative; display:flex; align-items:center; gap:11px; padding:8px 12px; margin:1px 10px; border-radius:var(--r); cursor:pointer; color:rgba(255,255,255,.74); font-size:13.5px; user-select:none; transition:background .12s, color .12s; }
+.nav-item svg{ flex-shrink:0; opacity:.85; }
+.nav-item:hover{ background:rgba(255,255,255,.06); color:#fff; }
+.nav-item.active{ background:var(--sidebar-active); color:#fff; font-weight:600; }
+.nav-item.active::before{ content:""; position:absolute; left:-10px; top:8px; bottom:8px; width:3px; border-radius:0 3px 3px 0; background:var(--accent); }
+.nav-item.active svg{ opacity:1; }
+/* Contador de pendências ao lado do item (ex.: propostas a revisar). */
+.nav-count{ margin-left:auto; min-width:20px; height:20px; padding:0 6px; border-radius:999px; background:#e3a008; color:#1f1300; font-size:11px; font-weight:700; display:inline-flex; align-items:center; justify-content:center; }
+.nav-count.info{ background:rgba(255,255,255,.16); color:#fff; }
+/* Menu lateral recolhível: o invólucro fica preso à janela e segura o
+   botão redondo que sai da borda direita (o menu em si rola por dentro,
+   e um botão dentro dele seria cortado pela rolagem). */
+.sidebar-wrap{ position:sticky; top:0; height:100vh; flex-shrink:0; z-index:30; }
+.sidebar-wrap .sidebar{ position:relative; height:100%; transition:width .2s ease; overflow-x:hidden; }
+.sidebar-toggle{ position:absolute; top:50%; right:-14px; transform:translateY(-50%); width:28px; height:28px; border-radius:50%; border:1px solid var(--line); background:var(--surface); color:var(--text-2); display:flex; align-items:center; justify-content:center; cursor:pointer; padding:0; z-index:2;
+  box-shadow:0 2px 6px rgba(15,23,42,.18), 0 0 0 4px var(--bg); transition:background .12s, color .12s, transform .2s ease, box-shadow .12s; }
+.sidebar-toggle:hover{ background:var(--primary); color:#fff; border-color:var(--primary); box-shadow:0 4px 12px rgba(52,90,136,.35), 0 0 0 4px var(--bg); }
+.sidebar-toggle:focus-visible{ outline:none; box-shadow:var(--focus), 0 0 0 4px var(--bg); }
+.sidebar-toggle svg{ transition:transform .2s ease; }
+/* Só em tela larga: no celular o menu abre inteiro por cima (botão ☰). */
+@media (min-width:901px){
+  #app-root.sidebar-recolhido{ --sidebar-w:72px; }
+  #app-root.sidebar-recolhido .sidebar-toggle svg{ transform:rotate(180deg); }
+  #app-root.sidebar-recolhido .brand{ justify-content:center; align-items:center; padding:6px 0 16px; }
+  #app-root.sidebar-recolhido .brand-logo{ display:none; }
+  #app-root.sidebar-recolhido .brand-marca{ display:block; }
+  #app-root.sidebar-recolhido .brand > div:last-child,
+  #app-root.sidebar-recolhido .nav-group-label,
+  #app-root.sidebar-recolhido .nav-item > span:not(.nav-count),
+  #app-root.sidebar-recolhido .sidebar-footer{ display:none; }
+  #app-root.sidebar-recolhido .nav-group{ margin:8px 12px 4px; padding-top:8px; border-top:1px solid rgba(255,255,255,.08); }
+  #app-root.sidebar-recolhido .brand + .nav-group{ border-top:0; padding-top:0; }
+  #app-root.sidebar-recolhido .nav-item{ justify-content:center; padding:10px 0; margin:2px 0; }
+  #app-root.sidebar-recolhido .nav-item.active::before{ left:-12px; }
+  /* Recolhido: o grupo vira um ícone de engrenagem que abre/fecha os itens. */
+  #app-root.sidebar-recolhido .nav-group-toggle{ justify-content:center; width:100%; padding:10px 0; margin:2px 0; }
+  #app-root.sidebar-recolhido .nav-group-toggle > span{ display:none; }
+  #app-root.sidebar-recolhido .nav-group-toggle[aria-expanded="true"]{ background:rgba(255,255,255,.08); }
+  #app-root.sidebar-recolhido .nav-group.recolhivel .nav-item{ padding-left:0; }
+  #app-root.sidebar-recolhido .nav-count{ position:absolute; top:2px; right:4px; min-width:17px; height:17px; padding:0 4px; font-size:10px; margin:0; }
+}
+.sidebar-footer{ margin-top:auto; padding:14px 20px 0; font-size:11px; color:rgba(255,255,255,.6); line-height:1.5; }
+
+/* ---------- Topo ---------- */
+.main{ flex:1; min-width:0; display:flex; flex-direction:column; }
+.topbar{ height:var(--topbar-h); flex-shrink:0; display:flex; align-items:center; justify-content:space-between; gap:16px; padding:0 28px; background:var(--surface); border-bottom:1px solid var(--line); position:sticky; top:0; z-index:25; }
+/* z-index 25: acima do .page-header (20), senão o título da tela rolava por
+   cima do topo e os textos se sobrepunham (07/10/2026). */
+.breadcrumb{ font-size:13px; color:var(--muted); }
+.breadcrumb b{ color:var(--text); font-weight:600; }
+.user-texto{ min-width:0; line-height:1.25; }
+.user-name, .user-role{ white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:180px; }
+.user-chip{ display:flex; align-items:center; gap:10px; }
+.avatar{ width:32px;height:32px;border-radius:50%; background:var(--gradiente-marca); color:#fff; display:flex;align-items:center;justify-content:center; font-size:12px; font-weight:700; }
+.user-name{ font-size:13px; font-weight:600; }
+.user-role{ font-size:11.5px; color:var(--muted); }
+.kbd{ font-family:inherit; font-size:10.5px; color:var(--muted); border:1px solid var(--line-strong); border-bottom-width:2px; border-radius:4px; padding:0 5px; background:var(--surface); }
+
+.proto-banner{ display:none; }
+
+/* ---------- Página ---------- */
+.content{ padding:24px 28px 40px; }
+.page-header{ display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:20px; gap:16px; flex-wrap:wrap; }
+.page-title{ font-size:22px; font-weight:700; letter-spacing:-.01em; margin:0 0 4px; }
+.page-subtitle{ font-size:13.5px; color:var(--muted); margin:0; max-width:820px; }

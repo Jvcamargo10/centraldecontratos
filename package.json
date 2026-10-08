@@ -1,0 +1,29 @@
+{
+  "name": "central-contratos-app",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Central de Ferramentas da Secretaria de Tecnologia (demo local) — Módulo 1: Alertas de Vencimento de Contratos.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test \"testes/*.test.js\"",
+    "avaliacao:extrair": "node ferramentas/avaliacao/extrairTextos.js",
+    "avaliacao": "node ferramentas/avaliacao/avaliar.js",
+    "avaliacao:semear-cache": "node ferramentas/avaliacao/semearCacheTexto.js",
+    "leitura-noturna": "node ferramentas/leituraNoturna.js",
+    "verificar-servidor": "node ferramentas/verificarServidor.js",
+    "trocar-raiz": "node ferramentas/trocarRaiz.js"
+  },
+  "dependencies": {
+    "@napi-rs/canvas": "0.1.80",
+    "@tesseract.js-data/por": "^1.0.0",
+    "bcryptjs": "^3.0.3",
+    "express": "^4.19.2",
+    "express-session": "^1.19.0",
+    "mammoth": "^1.12.3",
+    "pdf-parse": "^2.4.5",
+    "pdfjs-dist": "5.4.296",
+    "pdfkit": "^0.15.2",
+    "tesseract.js": "^7.0.0"
+  }
+}

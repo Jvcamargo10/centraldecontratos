@@ -1,0 +1,44 @@
+/* tokens.css — Cores, fontes, sombras e medidas (variáveis de todo o sistema).
+   Parte do estilo da Central de Contratos; a ordem dos arquivos no index.html importa
+   (é a ordem da cascata). */
+
+/* =================================================================
+   Sistema de design da Central de Contratos (22/09/2026)
+   Uma paleta, uma escala tipográfica e um conjunto de componentes —
+   cor e tamanho soltos no meio do código viram inconsistência. As
+   variáveis antigas (--series-*, --good, --critical...) continuam
+   existindo porque o app.js as usa em estilos inline.
+   ================================================================= */
+:root{
+  color-scheme: light;
+  /* Marca e superfícies — paleta da Prefeitura de Itaverde, a mesma do SGC
+     (sgc.itaverde.gov.br, 07/10/2026): azul institucional e verde-água. */
+  --primary:#345a88; --primary-hover:#1a3a5c; --primary-soft:#e8f0f8; --primary-border:#c3d4e7;
+  --primary-light:#457aa3; --accent:#70c7aa;
+  --bg:#f0f5fb; --surface:#ffffff; --surface-2:#f8fafc; --surface-3:#f1f4f8;
+  --line:#e3e8ef; --line-strong:#cbd3df;
+  --text:#0f172a; --text-2:#334155; --muted:#5f6b7f; /* #64748b tinha contraste 4,4:1 no fundo cinza (mínimo 4,5) */
+  /* Semântica: texto / fundo / borda */
+  --ok:#15803d;   --ok-bg:#ecfdf3;   --ok-line:#b7e4c7;
+  --warn:#b45309; --warn-bg:#fff7e6; --warn-line:#f5d38b;
+  --err:#b42318;  --err-bg:#fef1f0;  --err-line:#f6c4bf;
+  --info:#345a88; --info-bg:#eef3f9; --info-line:#c9d8ea;
+  /* Forma, sombra e ritmo */
+  --r-sm:6px; --r:10px; --r-lg:14px;
+  --shadow-sm:0 1px 2px rgba(15,23,42,.06);
+  --shadow:0 1px 3px rgba(15,23,42,.08), 0 1px 2px rgba(15,23,42,.04);
+  --shadow-lg:0 20px 48px rgba(15,23,42,.18);
+  --focus:0 0 0 3px rgba(52,90,136,.3);
+  --fonte:"Inter", "Segoe UI", system-ui, -apple-system, Roboto, "Helvetica Neue", Arial, sans-serif;
+  --topbar-h:64px;
+  --gradiente-marca:linear-gradient(135deg, #1a3a5c 0%, #345a88 60%, #457aa3 100%);
+  --sidebar-w:248px;
+
+  /* Nomes antigos (usados em estilos inline do app.js) */
+  --series-1:#345a88; --series-2:#ea6a2f; --series-3:#12a37a; --series-4:#e3a008;
+  --series-5:#e0719d; --series-6:#15803d; --series-7:#5b46b8; --series-8:#dc3f3f;
+  --good:#16a34a; --warning:#e0a100; --serious:#ea7d4f; --critical:#d33b3b;
+  --surface-1:var(--surface); --page-plane:var(--bg); --text-primary:var(--text); --text-secondary:var(--text-2);
+  --text-muted:var(--muted); --gridline:var(--line); --baseline:var(--line-strong); --border:var(--line);
+  --success-text:var(--ok); --sidebar-bg:#1a3a5c; --sidebar-active:rgba(255,255,255,.12);
+}

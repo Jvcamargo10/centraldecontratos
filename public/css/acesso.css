@@ -1,0 +1,74 @@
+/* acesso.css — Notificações e tela de login.
+   Parte do estilo da Central de Contratos; a ordem dos arquivos no index.html importa
+   (é a ordem da cascata). */
+
+/* ---------- Notificações ---------- */
+#toast-root{ position:fixed; bottom:22px; right:22px; z-index:200; display:flex; flex-direction:column; gap:8px; align-items:flex-end; }
+.toast{ display:flex; align-items:flex-start; gap:10px; background:#0f172a; color:#fff; padding:12px 16px; border-radius:10px; font-size:13px; font-weight:500; line-height:1.45; box-shadow:var(--shadow-lg); opacity:0; transform:translateY(8px); transition:opacity .2s, transform .2s; max-width:420px; border-left:4px solid #64748b; }
+.toast.show{ opacity:1; transform:translateY(0); }
+.toast-success{ border-left-color:#22c55e; }
+.toast-error{ border-left-color:#ef4444; }
+.toast-info{ border-left-color:var(--accent); }
+
+/* ---------- Login ---------- */
+/* Mesmo formato do login do SGC: à esquerda o painel azul da Prefeitura,
+   à direita o cartão de acesso. No celular, o painel vira uma faixa no topo. */
+.login-screen{ min-height:100vh; min-height:100dvh; width:100%; display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); background:var(--bg); }
+.login-marca{ position:relative; overflow:hidden; display:flex; flex-direction:column; justify-content:space-between; gap:32px; padding:48px 56px; color:#fff; background:var(--gradiente-marca); isolation:isolate; }
+/* Círculos decorativos, como no SGC. */
+.login-marca::before, .login-marca::after{ content:""; position:absolute; z-index:-1; border-radius:50%; background:rgba(255,255,255,.05); }
+.login-marca::before{ width:520px; height:520px; right:-180px; top:-160px; }
+.login-marca::after{ width:380px; height:380px; left:-140px; bottom:-150px; }
+.login-logo{ width:min(260px, 70%); height:auto; }
+.login-selo{ display:inline-block; font-size:12px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:var(--accent); margin-bottom:10px; }
+.login-marca h2{ margin:0 0 12px; font-size:clamp(28px, 3.2vw, 40px); font-weight:700; letter-spacing:-.02em; line-height:1.1; }
+.login-marca p{ margin:0; max-width:440px; font-size:15px; line-height:1.6; color:rgba(255,255,255,.82); }
+.login-rodape{ font-size:12px; color:rgba(255,255,255,.6); }
+.login-lado{ display:flex; align-items:center; justify-content:center; padding:32px 20px; }
+.login-card{ background:var(--surface); border:1px solid var(--line); border-radius:var(--r-lg); width:100%; max-width:410px; padding:34px 32px 28px; box-shadow:0 12px 32px rgba(26,58,92,.1); animation:aparecer .3s ease both; }
+.login-titulo{ font-size:24px; font-weight:700; letter-spacing:-.01em; margin:0 0 6px; color:var(--primary-hover); }
+.login-instrucao{ margin:0 0 22px; color:var(--muted); font-size:13.5px; line-height:1.5; }
+@media (max-width:900px){
+  .login-screen{ grid-template-columns:minmax(0,1fr); grid-template-rows:auto 1fr; }
+  .login-marca{ padding:24px 20px 26px; gap:16px; }
+  .login-marca::before{ width:300px; height:300px; right:-120px; top:-140px; }
+  .login-marca::after{ display:none; }
+  .login-logo{ width:180px; }
+  .login-marca h2{ font-size:24px; margin-bottom:6px; }
+  .login-marca p{ font-size:13.5px; }
+  .login-rodape{ display:none; }
+  .login-lado{ align-items:flex-start; padding:24px 16px 32px; }
+  .login-card{ padding:26px 20px 22px; }
+}
+.login-error{ font-size:13px; color:var(--err); background:var(--err-bg); border:1px solid var(--err-line); border-radius:var(--r); padding:9px 11px; margin:-4px 0 14px; }
+.login-hint{ font-size:11.5px; color:var(--muted); margin-top:16px; text-align:center; line-height:1.6; }
+.btn-entra{ width:100%; justify-content:center; text-decoration:none; padding:11px 14px; font-size:14px; }
+.login-ou{ display:flex; align-items:center; gap:10px; margin:16px 0 14px; font-size:12px; color:var(--muted); }
+.login-ou::before, .login-ou::after{ content:""; flex:1; height:1px; background:var(--line); }
+
+.hamburger{ display:none; }
+.sidebar-scrim{ display:none; }
+@media (max-width: 900px){
+  /* Botões do topo das telas: quebram linha em vez de empurrar a página para o lado. */
+  .page-header .row-actions{ flex-wrap:wrap !important; }
+  .hamburger{ display:inline-flex; }
+  .sidebar{ position:fixed; left:0; top:0; z-index:60; transform:translateX(-100%); transition:transform .22s ease, visibility .22s; visibility:hidden; }
+  /* Fechado: sem sombra vazando na borda e fora da ordem do Tab (visibility). */
+  /* No celular o menu abre por cima (botão ☰); recolher não se aplica. */
+  /* z-index:auto: o .sidebar-wrap é item de flex, e com z-index 30 virava
+     uma camada ABAIXO do fundo escuro (55) — o toque num item do menu
+     caía no fundo e só fechava o menu, sem abrir a tela (02/10/2026). */
+  .sidebar-wrap{ position:static; height:auto; width:0; z-index:auto; }
+  /* 100dvh: a altura descontando a barra do navegador do celular. */
+  .sidebar-wrap .sidebar, #app-root.sidebar-recolhido .sidebar-wrap .sidebar{ position:fixed; height:100vh; height:100dvh; width:min(280px, 85vw); overscroll-behavior:contain; }
+  html.menu-aberto, html.menu-aberto body{ overflow:hidden; }
+  .sidebar-toggle{ display:none; }
+  #app-root.sidebar-recolhido .nav-item > span:not(.nav-count), #app-root.sidebar-recolhido .nav-group-label, #app-root.sidebar-recolhido .brand > div:last-child, #app-root.sidebar-recolhido .sidebar-footer{ display:revert; }
+  #app-root.sidebar-open .sidebar{ transform:translateX(0); visibility:visible; box-shadow:0 0 40px rgba(0,0,0,.3); }
+  #app-root.sidebar-open .sidebar-scrim{ display:block; position:fixed; inset:0; background:rgba(15,23,42,.45); z-index:55; }
+  .content{ padding:18px 16px 50px; }
+  .topbar{ padding:0 16px; }
+  .grid-2{ grid-template-columns:minmax(0,1fr); }
+  .stat-grid{ grid-template-columns:repeat(auto-fit,minmax(max(150px, calc((100% - 30px) / 4)),1fr)); gap:10px; }
+  .stat-value{ font-size:24px; }
+}
