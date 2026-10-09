@@ -15,7 +15,7 @@ por revisão humana antes de virar dado oficial.
 
 ## Demonstração
 
-**[Abrir a demonstração](https://SEU-USUARIO.github.io/central-contratos/)** —
+**[Abrir a demonstração](https://jvcamargo10.github.io/centraldecontratos/)** —
 roda no navegador, sem login e sem servidor, com 11 processos fictícios:
 contratos vencido, crítico, próximo do vencimento e confortável, aditivos,
 apostilamentos, propostas esperando revisão na Fila, pendências de leitura,
