@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Central de Contratos">
+  <rect x="2" y="2" width="60" height="60" rx="14" fill="#70c7aa"/>
+  <path d="M20 14h17l9 9v27H20z" fill="#ffffff"/>
+  <path d="M37 14v9h9" fill="#d6efe6"/>
+  <path d="M25 37l5 5 10-11" fill="none" stroke="#1a3a5c" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

@@ -1,0 +1,40 @@
+/* responsivo.css — Celular (até 640 px).
+   Parte do estilo da Central de Contratos; a ordem dos arquivos no index.html importa
+   (é a ordem da cascata). */
+
+/* ---------- Celular (≤ 640 px, 02/10/2026) ----------
+   Topo: só a sigla do usuário e a página atual. Tabelas: cada linha vira um
+   cartão "coluna: valor" (rótulos postos por rotularTabelas no app.js); o
+   cabeçalho vira uma fila de botões de ordenação, que continuam funcionando. */
+@media (max-width:640px){
+  .bc-raiz, .user-texto{ display:none; }
+  .topbar{ gap:10px; }
+  .page-title{ font-size:20px; }
+  .table-wrap{ border:0; background:none; overflow:visible; }
+  .table-wrap.tabela-pagina{ max-height:none; overflow:visible; }
+  .table-wrap table, .table-wrap tbody, .table-wrap tr, .table-wrap td{ display:block; width:100%; }
+  .table-wrap thead{ display:block; }
+  .table-wrap thead tr{ display:flex; flex-wrap:wrap; gap:6px; margin:0 0 10px; }
+  .table-wrap thead th{ display:block; position:static; padding:5px 10px; border:1px solid var(--line); border-radius:999px; background:var(--surface); font-size:12px; box-shadow:none; }
+  .table-wrap thead th:not(:has(.th-ordenar)){ display:none; }
+  .table-wrap tbody tr{ background:var(--surface); border:1px solid var(--line); border-radius:var(--r-lg); padding:4px 14px; margin:0 0 10px; box-shadow:var(--shadow-sm); }
+  .table-wrap tbody tr:hover{ background:var(--surface); }
+  .table-wrap td{ display:grid; grid-template-columns:minmax(92px, 36%) minmax(0,1fr); gap:4px 12px; align-items:start; padding:9px 0; border-bottom:1px solid var(--line); text-align:left; white-space:normal; }
+  .table-wrap tbody tr td:last-child{ border-bottom:0; }
+  .table-wrap td::before{ content:attr(data-label); font-size:12px; font-weight:600; color:var(--muted); padding-top:1px; }
+  .table-wrap td:not([data-label])::before{ content:none; }
+  .table-wrap td:not([data-label]){ display:block; }
+  .table-wrap td.num{ text-align:left; }
+  .table-wrap .td-conteudo{ min-width:0; overflow-wrap:anywhere; }
+  .table-wrap .faixa-meses{ flex-wrap:wrap; }
+  .table-wrap .eixos{ min-width:0; grid-template-columns:repeat(2, minmax(0, 1fr)); }
+  .table-wrap .status-mini, .table-wrap .badge, .table-wrap .nowrap{ white-space:normal; }
+  .table-wrap .status-mini{ align-items:flex-start; }
+  .table-wrap .col-fixa-esq, .table-wrap .col-fixa-dir{ position:static; box-shadow:none; background:none; width:auto; text-align:left; }
+  .table-wrap .row-actions{ justify-content:flex-start !important; margin-left:0 !important; max-width:none !important; }
+  .table-wrap .celula-texto{ max-width:none; min-width:0; }
+  .table-wrap .empty-cell{ padding:24px 12px; border:1px dashed var(--line-strong); border-radius:var(--r-lg); background:var(--surface); }
+  .col-faltando{ min-width:0; }
+}
+
+.boot-loading{ display:flex; align-items:center; justify-content:center; gap:10px; height:100vh; width:100%; color:var(--muted); font-size:14px; padding:0 24px; text-align:center; }

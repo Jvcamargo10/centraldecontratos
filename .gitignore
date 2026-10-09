@@ -19,3 +19,6 @@ logs/
 # resultado da avaliação com CNPJ/CPF do SGC) — não versionar
 fichas-cadastro/
 ferramentas/avaliacao/resultado.json
+
+# Pasta de trabalho da demonstração (npm run demo)
+.demo-build/

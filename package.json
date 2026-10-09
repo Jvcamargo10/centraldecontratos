@@ -12,7 +12,8 @@
     "avaliacao:semear-cache": "node ferramentas/avaliacao/semearCacheTexto.js",
     "leitura-noturna": "node ferramentas/leituraNoturna.js",
     "verificar-servidor": "node ferramentas/verificarServidor.js",
-    "trocar-raiz": "node ferramentas/trocarRaiz.js"
+    "trocar-raiz": "node ferramentas/trocarRaiz.js",
+    "demo": "node ferramentas/demo/montarDemo.js"
   },
   "dependencies": {
     "@napi-rs/canvas": "0.1.80",

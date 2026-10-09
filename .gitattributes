@@ -1,3 +1,6 @@
 * text=auto eol=lf
 *.cmd text eol=crlf
 *.pdf binary
+
+# Arquivos da demonstração: exatamente como foram gerados
+docs/demo/arquivos/** -text

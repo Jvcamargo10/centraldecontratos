@@ -13,6 +13,26 @@ por revisão humana antes de virar dado oficial.
 > nomes fictícios ("Prefeitura de Itaverde", "SGC", "Atlas Tecnologia"...), e
 > a cópia não traz nenhum dado — o banco começa vazio.
 
+## Demonstração
+
+**[Abrir a demonstração](https://SEU-USUARIO.github.io/central-contratos/)** —
+roda no navegador, sem login e sem servidor, com 11 processos fictícios:
+contratos vencido, crítico, próximo do vencimento e confortável, aditivos,
+apostilamentos, propostas esperando revisão na Fila, pendências de leitura,
+mapa de risco, relatórios mensais, uma requisição do Tribunal de Contas e a
+busca nos documentos.
+
+Os dados da demonstração **não foram digitados**: `npm run demo` gera os PDFs
+fictícios numa pasta de rede de mentira, sobe o servidor de verdade, faz o que
+a equipe faria (varrer as pastas, aprovar na Fila, gerar os mapas de risco,
+registrar histórico) e grava as respostas de cada tela em `docs/`. No
+navegador, `docs/demo/demo.js` responde às chamadas da interface com essas
+respostas — então tudo o que aparece saiu das regras de leitura reais. Gravar
+(aprovar, registrar, alterar) mostra "nada é gravado".
+
+Para publicar: no GitHub, **Settings > Pages > Deploy from a branch**, branch
+`main`, pasta `/docs`.
+
 ## O problema
 
 A equipe acompanhava dezenas de contratos em planilhas e num sistema de
@@ -90,6 +110,7 @@ pasta com processos (uma subpasta "P.A. ..." por processo).
 
 ```bash
 npm test
+npm run demo   # gera de novo a demonstração em docs/ (dados fictícios, datas a partir de hoje)
 ```
 
 ## Estrutura
@@ -100,13 +121,14 @@ db.js                estrutura e gravação do data.json (com backup)
 integrations/        regras de leitura, cálculos, OCR, segurança, e-mail, login
 public/              interface (index.html, css/, js/ em módulos ES, img/, fonts/)
 testes/              testes automatizados (node --test)
-ferramentas/         scripts de manutenção (avaliação das regras, troca de raiz, serviço do Windows)
-docs/                documentação técnica completa
+ferramentas/         scripts de manutenção e o gerador da demonstração (ferramentas/demo/)
+documentacao/        documentação técnica completa
+docs/                site da demonstração (GitHub Pages), gerado por npm run demo
 ```
 
 ## Documentação
 
-- [Documentação técnica](docs/DOCUMENTACAO-TECNICA.md) — regras de leitura,
+- [Documentação técnica](documentacao/DOCUMENTACAO-TECNICA.md) — regras de leitura,
   decisões e medições, módulo a módulo.
 - [Guia de uso](GUIA-DE-USO.md) — para a equipe que usa o sistema.
 - [Instalação em servidor](SERVIDOR.md) — HTTPS, serviço do Windows, backup.

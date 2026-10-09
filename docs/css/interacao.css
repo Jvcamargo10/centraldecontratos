@@ -1,0 +1,126 @@
+/* interacao.css — Busca global, avisos, carregamento, movimento e menus.
+   Parte do estilo da Central de Contratos; a ordem dos arquivos no index.html importa
+   (é a ordem da cascata). */
+
+/* ---------- Busca global ---------- */
+.global-search{ position:relative; width:420px; max-width:40vw; }
+.global-search .search-input{ min-width:0; }
+.global-search .search-input input{ background:var(--surface-3); border-color:transparent; padding-right:40px; }
+.global-search .search-input input:focus{ background:var(--surface); border-color:var(--primary); }
+.global-search .kbd{ position:absolute; right:10px; top:50%; transform:translateY(-50%); pointer-events:none; }
+.global-search-results{ position:absolute; top:calc(100% + 6px); left:0; right:0; background:var(--surface); border:1px solid var(--line); border-radius:var(--r-lg); box-shadow:var(--shadow-lg); max-height:60vh; overflow-y:auto; z-index:20; padding:6px 0; }
+.global-search-group-label{ font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:var(--muted); padding:8px 14px 4px; }
+.global-search-item{ display:flex; align-items:center; gap:10px; padding:9px 14px; cursor:pointer; }
+.global-search-item:hover{ background:var(--primary-soft); }
+.global-search-item-icon{ color:var(--muted); flex-shrink:0; display:flex; }
+.global-search-item-body{ min-width:0; display:flex; flex-direction:column; }
+.global-search-item-title{ font-size:13px; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.global-search-item-sub{ font-size:11.5px; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.global-search-empty{ font-size:13px; color:var(--muted); padding:10px 14px; }
+@media (max-width: 860px){ .global-search{ display:none; } }
+
+.module-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); gap:12px; }
+.module-card{ background:var(--surface); border:1px solid var(--line); border-radius:var(--r-lg); padding:16px; cursor:pointer; display:flex; flex-direction:column; gap:10px; box-shadow:var(--shadow-sm); transition:border-color .12s, box-shadow .12s, transform .12s; }
+.module-card:hover{ border-color:var(--primary-border); box-shadow:var(--shadow); transform:translateY(-1px); }
+.module-icon{ width:36px;height:36px;border-radius:10px; display:flex;align-items:center;justify-content:center; }
+.module-label{ font-size:13.5px; font-weight:700; }
+
+.tabs{ display:flex; gap:4px; border-bottom:1px solid var(--line); margin-bottom:16px; flex-wrap:wrap; }
+.tab{ padding:10px 14px; font-size:13.5px; font-weight:600; color:var(--muted); cursor:pointer; border-bottom:2px solid transparent; margin-bottom:-1px; }
+.tab:hover{ color:var(--text); }
+.tab.active{ color:var(--primary); border-bottom-color:var(--primary); }
+
+.empty-state{ text-align:center; padding:56px 20px; color:var(--muted); }
+.empty-state svg{ margin-bottom:12px; opacity:.45; }
+.empty-state-title{ font-size:15px; font-weight:700; color:var(--text-2); margin-bottom:4px; }
+
+/* ---------- Avisos (callouts) ---------- */
+/* "Como funciona esta tela" — explicação recolhida (revelação progressiva). */
+.ajuda{ margin:0 0 16px; border:1px solid var(--line); border-radius:var(--r); background:var(--surface); }
+.ajuda > summary{ list-style:none; display:flex; align-items:center; gap:8px; padding:9px 14px; font-size:13px; font-weight:600; color:var(--text-2); user-select:none; }
+.ajuda > summary::-webkit-details-marker{ display:none; }
+.ajuda > summary::after{ content:""; margin-left:auto; width:8px; height:8px; border-right:2px solid var(--muted); border-bottom:2px solid var(--muted); transform:rotate(45deg); transition:transform .15s; }
+.ajuda[open] > summary::after{ transform:rotate(-135deg); }
+.ajuda > summary svg{ color:var(--primary); }
+.ajuda-corpo{ padding:0 14px 12px 36px; font-size:13px; color:var(--text-2); line-height:1.6; }
+.note-card{ background:var(--info-bg); border:1px solid var(--info-line); color:#1a3a5c; border-radius:var(--r); padding:12px 16px; font-size:13px; line-height:1.55; }
+.callout{ display:flex; align-items:flex-start; gap:10px; border-radius:var(--r); padding:12px 16px; font-size:13px; line-height:1.5; border:1px solid; margin-bottom:16px; }
+.callout > svg{ flex-shrink:0; margin-top:1px; }
+.callout-info{ background:var(--info-bg); border-color:var(--info-line); color:#1a3a5c; }
+.callout-ok{ background:var(--ok-bg); border-color:var(--ok-line); color:#0d5c2b; }
+.callout-warn{ background:var(--warn-bg); border-color:var(--warn-line); color:#7a4304; }
+.callout-err{ background:var(--err-bg); border-color:var(--err-line); color:#8f1c13; }
+
+.spinner{ display:inline-block; width:15px; height:15px; flex:none; border:2px solid var(--info-line); border-top-color:var(--primary); border-radius:50%; animation:girar .8s linear infinite; }
+@keyframes girar{ to{ transform:rotate(360deg); } }
+/* Carregamento: blocos cinza no lugar do conteúdo (em vez de "Carregando..."). */
+.skeleton{ display:block; border-radius:6px; background:linear-gradient(90deg,var(--surface-3) 25%,#e9edf3 37%,var(--surface-3) 63%); background-size:400% 100%; animation:brilho 1.3s ease infinite; }
+@keyframes brilho{ 0%{ background-position:100% 50%; } 100%{ background-position:0 50%; } }
+/* ---------- Movimento (07/10/2026): entrada das telas, cards, botões ---------- */
+@keyframes entrar{ from{ opacity:0; transform:translateY(10px); } to{ opacity:1; transform:none; } }
+#view-root.entrando > *{ animation:entrar .38s cubic-bezier(.2,.7,.2,1) both; }
+#view-root.entrando > *:nth-child(2){ animation-delay:.04s; }
+#view-root.entrando > *:nth-child(3){ animation-delay:.08s; }
+#view-root.entrando > *:nth-child(4){ animation-delay:.12s; }
+#view-root.entrando > *:nth-child(n+5){ animation-delay:.16s; }
+#view-root.entrando .stat-grid > .stat-card{ animation:entrar .4s cubic-bezier(.2,.7,.2,1) both; }
+#view-root.entrando .stat-grid > .stat-card:nth-child(2){ animation-delay:.05s; }
+#view-root.entrando .stat-grid > .stat-card:nth-child(3){ animation-delay:.1s; }
+#view-root.entrando .stat-grid > .stat-card:nth-child(4){ animation-delay:.15s; }
+#view-root.entrando .stat-grid > .stat-card:nth-child(n+5){ animation-delay:.2s; }
+.card, .stat-card, .alert-row, .btn-primary, .btn-ghost, .icon-btn, .nav-item, .segmento, .aba{ transition:background-color .15s ease, border-color .15s ease, box-shadow .2s ease, transform .15s ease, color .15s ease; }
+.btn-primary:active:not(:disabled), .btn-ghost:active:not(:disabled), .icon-btn:active:not(:disabled), .segmento:active{ transform:scale(.97); }
+.alert-row.clicavel{ cursor:pointer; }
+.alert-row.clicavel:hover{ border-color:var(--primary-border); box-shadow:var(--shadow); transform:translateY(-1px); }
+tbody tr.linha-clicavel{ transition:background-color .12s ease; }
+/* Seções que abrem e fecham com altura animada (details). */
+:root{ interpolate-size:allow-keywords; }
+details::details-content{ transition:height .25s ease, content-visibility .25s allow-discrete; height:0; overflow:clip; }
+details[open]::details-content{ height:auto; }
+.modal-overlay{ animation:aparecer .18s ease both; }
+.modal-card{ animation:subir .22s cubic-bezier(.2,.7,.2,1) both; }
+
+/* "Como funciona": botão no cabeçalho da tela, que abre um painel. */
+/* Cabeçalho acima do conteúdo: o painel "Como funciona" e os menus abrem por cima dos cards. */
+.page-header{ position:relative; z-index:20; }
+.ajuda.ajuda-topo{ margin:0; border:0; background:none; position:static; align-self:flex-start; }
+.ajuda.ajuda-topo > summary{ height:36px; padding:0 12px; border:1px solid var(--line-strong); border-radius:var(--r); background:var(--surface); color:var(--text-2); font-weight:500; cursor:pointer; white-space:nowrap; }
+.ajuda.ajuda-topo > summary:hover{ border-color:var(--primary-border); color:var(--primary); }
+.ajuda.ajuda-topo > summary::after{ display:none; }
+.ajuda.ajuda-topo[open] > summary{ border-color:var(--primary); color:var(--primary); background:var(--primary-soft); }
+.ajuda.ajuda-topo > .ajuda-corpo, .ajuda.ajuda-topo::details-content{ }
+.ajuda.ajuda-topo .ajuda-corpo{ position:absolute; right:0; top:calc(100% + 6px); z-index:15; width:min(560px, calc(100vw - 32px)); padding:16px 18px; background:var(--surface); border:1px solid var(--line); border-radius:var(--r-lg); box-shadow:var(--shadow-lg); animation:subir .18s ease both; }
+.page-header .row-actions, .page-header > .acoes-topo{ display:flex; gap:8px; flex-wrap:wrap; align-items:flex-start; }
+
+/* Início: resumo das outras faixas em chips (antes, 3 cards a mais). */
+.resumo-faixas{ display:flex; flex-wrap:wrap; gap:8px; margin:-4px 0 18px; }
+.chip-resumo{ display:inline-flex; align-items:center; gap:7px; height:32px; padding:0 12px; border:1px solid var(--line); border-radius:999px; background:var(--surface); color:var(--text-2); font:inherit; font-size:13px; cursor:pointer; transition:border-color .15s, background-color .15s, transform .15s; }
+.chip-resumo b{ color:var(--text); font-variant-numeric:tabular-nums; }
+.chip-resumo:hover{ border-color:var(--primary-border); background:var(--primary-soft); }
+.chip-resumo:focus-visible{ outline:none; box-shadow:var(--focus); }
+.chip-resumo .ponto{ width:8px; height:8px; border-radius:50%; background:var(--muted); }
+.chip-resumo .ponto.ok{ background:var(--good); } .chip-resumo .ponto.warn{ background:var(--warning); }
+.alert-row .seta-linha{ display:inline-flex; color:var(--muted); transform:rotate(180deg); transition:transform .15s, color .15s; }
+.alert-row.clicavel:hover .seta-linha{ color:var(--primary); transform:rotate(180deg) translateX(-3px); }
+.alert-row-link{ color:inherit; text-decoration:none; }
+.alert-row-link:hover{ color:var(--primary); }
+.alert-row-link:focus-visible{ outline:none; box-shadow:var(--focus); border-radius:4px; }
+.alert-row-actions{ align-items:center; }
+/* Menu "Exportar" (links no menu suspenso). */
+.menu-mais-lista a{ display:block; box-sizing:border-box; width:100%; padding:9px 10px; border-radius:6px; font-size:13px; color:var(--text); text-decoration:none; }
+.menu-mais-lista a:hover, .menu-mais-lista a:focus-visible{ background:var(--surface-3); outline:none; }
+.menu-mais-lista a small{ display:block; color:var(--muted); font-size:11.5px; margin-top:2px; }
+.menu-exportar > summary{ cursor:pointer; }
+.menu-exportar .menu-mais-lista{ width:300px; left:0; right:auto; }
+@media (max-width:640px){ .menu-exportar .menu-mais-lista{ position:static; width:auto; max-width:none; margin-top:6px; } }
+a.icon-btn{ text-decoration:none; }
+/* Etiqueta vermelha (faltava: "Faixa 4", "Atrasado", "vencida" saíam cinza). */
+.status-mini.err{ color:var(--err); } .status-mini.err::before{ background:var(--critical); }
+/* Número do contrato como link da linha (teclado e leitor de tela). */
+a.link-linha{ color:inherit; text-decoration:none; }
+a.link-linha:hover{ color:var(--primary); text-decoration:underline; }
+a.link-linha:focus-visible{ outline:none; box-shadow:var(--focus); border-radius:4px; }
+.menu-a-direita .menu-mais-lista{ left:auto; right:0; }
+.linhas-2{ display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+.nota-tabela{ display:flex; gap:8px; align-items:flex-start; margin-top:10px; font-size:12.5px; color:var(--text-2); line-height:1.5; }
+.nota-tabela svg{ flex:none; margin-top:2px; color:var(--warn); }

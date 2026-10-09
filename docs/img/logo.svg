@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 100" role="img" aria-label="Central de Contratos">
+  <rect x="4" y="18" width="64" height="64" rx="15" fill="#70c7aa"/>
+  <path d="M22 30h18l9 9v29H22z" fill="#ffffff"/>
+  <path d="M40 30v9h9" fill="#d6efe6"/>
+  <path d="M27 54l5 5 11-12" fill="none" stroke="#1a3a5c" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="84" y="46" font-family="Inter, 'Segoe UI', Arial, sans-serif" font-size="30" font-weight="700" fill="#ffffff">Central de</text>
+  <text x="84" y="80" font-family="Inter, 'Segoe UI', Arial, sans-serif" font-size="30" font-weight="700" fill="#ffffff">Contratos</text>
+</svg>
